@@ -6,9 +6,24 @@
   "scripts": {
     "start": "node index.js"
   },
+  "git": "https://github.com/arizalsaputro/fuzzy-logic",
   "author": "arizalsaputro",
   "license": "ISC",
   "dependencies": {
     "fast-csv": "^2.4.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arizalsaputro/fuzzy-logic.git"
+  },
+  "keywords": [
+    "fuzzy",
+    "javascript",
+    "nodejs"
+  ],
+  "bugs": {
+    "url": "https://github.com/arizalsaputro/fuzzy-logic/issues"
+  },
+  "homepage": "https://github.com/arizalsaputro/fuzzy-logic#readme"
 }
