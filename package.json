@@ -1,0 +1,14 @@
+{
+  "name": "tupro2-ai-fuzzy",
+  "version": "1.0.0",
+  "description": "Tupro 2 fuzzy logic muhammad arizal saputro (1301178325)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "arizalsaputro",
+  "license": "ISC",
+  "dependencies": {
+    "fast-csv": "^2.4.1"
+  }
+}
