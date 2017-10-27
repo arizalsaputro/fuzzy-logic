@@ -4,7 +4,8 @@
   "description": "Tupro 2 fuzzy logic muhammad arizal saputro (1301178325)",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "node index.test.js"
   },
   "git": "https://github.com/arizalsaputro/fuzzy-logic",
   "author": "arizalsaputro",

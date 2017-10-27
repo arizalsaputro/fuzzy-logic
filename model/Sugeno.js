@@ -9,10 +9,13 @@ class Sugeno{
         this.roles = roles
     }
 
-    calculateValue(yes,no){
+    calculateValue(yes,no,log=true){
         let forYes = this.roles.find((item)=>item.ling === yes.ling)
         let forNo = this.roles.find((item)=>item.ling === no.ling)
         let yStar = ((yes.value*forYes.value) + (no.value * forNo.value)) / (yes.value + no.value)
+        if(log){
+            console.log('y* = ',yStar)
+        }
         return {
             value:yStar >= forYes.value ? YES : NO,
             weight:yStar

@@ -18,9 +18,14 @@ class Fuzzy{
         this.Sugeno = new Sugeno(appropriatenessRule)
     }
 
-    think(emotion,provocation){
+    think(emotion,provocation,log=false){
         let emoResult = this.Emotion.testValue(emotion)
         let provoResult = this.Provocation.testValue(provocation)
+
+        if(log){
+            console.log('\nemotionResult',emoResult)
+            console.log('provocationResult',provoResult)
+        }
 
         let interferenceResult =[]
 
@@ -28,9 +33,10 @@ class Fuzzy{
             let emotion = emoResult[i]
             for(let j=0;j<provoResult.length;j++){
                 let provocation = provoResult[j]
-                interferenceResult.push(this.Rules.testLinguistic(emotion,provocation))
+                interferenceResult.push(this.Rules.testLinguistic(emotion,provocation,log))
             }
         }
+
 
         let lingYes = interferenceResult.filter((item)=>{
           return item.ling === YES
@@ -38,6 +44,7 @@ class Fuzzy{
         let lingNo = interferenceResult.filter((item)=>{
             return item.ling === NO
         })
+
 
 
         let params1 = {
@@ -50,15 +57,30 @@ class Fuzzy{
             value: lingNo.length === 0 ? 0 : Math.max.apply(Math,lingNo.map((o)=>{return o.value}))
         }
 
-        return this.Sugeno.calculateValue(params1,params2)
+        let result = this.Sugeno.calculateValue(params1,params2,log)
+
+        if(log){
+            console.log('interferenceBeforeFilter',interferenceResult)
+            console.log('linguisticYes',lingYes)
+            console.log('linguisticNo',lingNo)
+            console.log('parameter1',params1)
+            console.log('parameter2',params2)
+            console.log('calculationResult',result)
+        }
+
+        return result
     }
 
     bulkThink(rawData,show=false){
         rawData = rawData.map((item)=>{
-            let resThink = this.think(item.emotion,item.provocation)
-            item.reality = resThink.value
-            item.weight = resThink.weight
-            item.status = item.expectation === item.reality
+            let resThink = this.think(item.emotion,item.provocation,show)
+            if(show){
+                item.reality = resThink.value
+                item.weight = resThink.weight
+                item.status = item.expectation === item.reality
+            }else{
+                item.hoax = resThink.value
+            }
             return item
         })
         if(show){
@@ -75,7 +97,7 @@ class Fuzzy{
         }).length
         let wrong = data-correct
         let accuracy = (correct/data) * 100
-        console.log('Data Count : ' + data)
+        console.log('\nData Count : ' + data)
         console.log('Correct Answer : ' + correct)
         console.log('Wrong Answer : ' + wrong)
         console.log('Accuracy: ' + accuracy + ' %')

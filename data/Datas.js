@@ -2,13 +2,18 @@
  * Created by muharizals on 26/10/2017.
  */
 
-const {GTE,GT,LT,LTE,RECTANGLE,LINEAR_DOWN,LINEAR_UP} = require('../util/Condition')
+const {GTE,GT,LT,LTE,RECTANGLE,LINEAR_DOWN,LINEAR_UP,SIGMOID_UP,SIGMOID_DOWN} = require('../util/Condition')
 const {LOW,MEDIUM,HIGH,NO,YES} = require('../util/Linguistik')
 
 module.exports = {
     EmotionGraph:[
         {
-            type:RECTANGLE,
+            type:SIGMOID_DOWN,
+            sigmoid:{
+                condition:1,
+                start:0,
+                end:40
+            },
             ling:LOW,
             start:{
                 value:0,
@@ -16,73 +21,121 @@ module.exports = {
             },
             default:1,
             end:{
-                value:25,
+                value:20,
                 condition:LTE
             }
         },{
-            type:LINEAR_DOWN,
+            type:SIGMOID_DOWN,
             ling:LOW,
+            sigmoid:{
+                condition:2,
+                start:0,
+                end:40
+            },
             start:{
-                value:25,
+                value:20,
                 condition:GT
             },
             end:{
-                value:30,
+                value:40,
                 condition:LTE
             }
         },{
-            type:LINEAR_UP,
+            type:SIGMOID_UP,
             ling:MEDIUM,
+            sigmoid:{
+                condition:1,
+                start:25,
+                end:50
+            },
             start:{
                 value:25,
+                condition:GTE
+            },
+            end:{
+                value:37,
+                condition:LT
+            }
+        },
+        {
+            type:SIGMOID_UP,
+            ling:MEDIUM,
+            sigmoid:{
+                condition:2,
+                start:25,
+                end:50
+            },
+            start:{
+                value:37,
                 condition:GTE
             },
             end:{
                 value:50,
                 condition:LT
             }
-        },{
-            type:RECTANGLE,
+        },
+        {
+            type:SIGMOID_DOWN,
             ling:MEDIUM,
+            sigmoid:{
+                condition:1,
+                start:50,
+                end:75
+            },
             start:{
                 value:50,
                 condition:GTE
             },
             default:1,
             end:{
-                value:50,
-                condition:LTE
+                value:62,
+                condition:LT
             }
         },{
-            type:LINEAR_DOWN,
+            type:SIGMOID_DOWN,
             ling:MEDIUM,
+            sigmoid:{
+                condition:2,
+                start:50,
+                end:75
+            },
             start:{
-                value:50,
-                condition:GT
+                value:62,
+                condition:GTE
             },
             end:{
                 value:75,
                 condition:LTE
             },
         },{
-            type:LINEAR_UP,
+            type:SIGMOID_UP,
             ling:HIGH,
+            sigmoid:{
+              condition:1,
+              start:70,
+              end:100
+            },
             start:{
                 value:70,
                 condition:GTE
             },
             end:{
-                value:75,
-                condition:LT
+                value:85,
+                condition:LTE
             }
-        },{
-            type:RECTANGLE,
+        },
+        {
+            type:SIGMOID_UP,
             ling:HIGH,
-            start:{
-                value:75,
-                condition:GTE
+            sigmoid:{
+                condition:2,
+                start:70,
+                end:100
             },
-            default:1,
+            start:{
+                value:85,
+                condition:GT
+            },
             end:{
                 value:100,
                 condition:LTE
@@ -91,7 +144,12 @@ module.exports = {
     ],
     ProvocationGraph:[
         {
-            type:RECTANGLE,
+            type:SIGMOID_DOWN,
+            sigmoid:{
+                condition:1,
+                start:0,
+                end:40
+            },
             ling:LOW,
             start:{
                 value:0,
@@ -99,73 +157,121 @@ module.exports = {
             },
             default:1,
             end:{
-                value:25,
+                value:20,
                 condition:LTE
             }
         },{
-            type:LINEAR_DOWN,
+            type:SIGMOID_DOWN,
             ling:LOW,
+            sigmoid:{
+                condition:2,
+                start:0,
+                end:40
+            },
             start:{
-                value:25,
+                value:20,
                 condition:GT
             },
             end:{
-                value:30,
+                value:40,
                 condition:LTE
             }
         },{
-            type:LINEAR_UP,
+            type:SIGMOID_UP,
             ling:MEDIUM,
+            sigmoid:{
+                condition:1,
+                start:25,
+                end:50
+            },
             start:{
                 value:25,
+                condition:GTE
+            },
+            end:{
+                value:37,
+                condition:LT
+            }
+        },
+        {
+            type:SIGMOID_UP,
+            ling:MEDIUM,
+            sigmoid:{
+                condition:2,
+                start:25,
+                end:50
+            },
+            start:{
+                value:37,
                 condition:GTE
             },
             end:{
                 value:50,
                 condition:LT
             }
-        },{
-            type:RECTANGLE,
+        },
+        {
+            type:SIGMOID_DOWN,
             ling:MEDIUM,
+            sigmoid:{
+                condition:1,
+                start:50,
+                end:75
+            },
             start:{
                 value:50,
                 condition:GTE
             },
             default:1,
             end:{
-                value:50,
-                condition:LTE
+                value:62,
+                condition:LT
             }
         },{
-            type:LINEAR_DOWN,
+            type:SIGMOID_DOWN,
             ling:MEDIUM,
+            sigmoid:{
+                condition:2,
+                start:50,
+                end:75
+            },
             start:{
-                value:50,
-                condition:GT
+                value:62,
+                condition:GTE
             },
             end:{
                 value:75,
                 condition:LTE
             },
         },{
-            type:LINEAR_UP,
+            type:SIGMOID_UP,
             ling:HIGH,
+            sigmoid:{
+                condition:1,
+                start:70,
+                end:100
+            },
             start:{
                 value:70,
                 condition:GTE
             },
             end:{
-                value:75,
-                condition:LT
+                value:85,
+                condition:LTE
             }
-        },{
-            type:RECTANGLE,
+        },
+        {
+            type:SIGMOID_UP,
             ling:HIGH,
-            start:{
-                value:75,
-                condition:GTE
+            sigmoid:{
+                condition:2,
+                start:70,
+                end:100
             },
-            default:1,
+            start:{
+                value:85,
+                condition:GT
+            },
             end:{
                 value:100,
                 condition:LTE
@@ -221,10 +327,10 @@ module.exports = {
     AppropriatenessRule :[
         {
             ling:NO,
-            value:50
+            value:0.5
         },{
             ling:YES,
-            value:60
+            value:0.6
         }
     ]
 }

@@ -1,12 +1,13 @@
 ## Tugas Program 2 AI
 
-Tupro 2 mata kulih kecerdasan buatan
+Assignment 2 for artificial intelligence course.
 
 ### How to run
 
 * make sure support ES6
 * run ``` npm install ```
-* run ``` npm start   ```
+* run ``` npm start   ``` for check data B21 to B30
+* run ```npm test``` for check B01 to B20
 
 ### DataSet
 
